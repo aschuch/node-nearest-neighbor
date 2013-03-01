@@ -118,6 +118,10 @@ $ npm test
 All tests OK
 ```
 
+## Contributors
+
+Thanks to [Blago](http://stackoverflow.com/users/113999/blago) on StackOverflow for providing the initial draft/idea for the algorithm.
+
 ## Contributing
 
 * Create something awesome, make the code better, add some functionality,
