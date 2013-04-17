@@ -89,7 +89,7 @@ ipSimilarity = (a, b) ->
 
   distance =  calculateSum(diffs) / (255 * 4)
   1 - distance
-  
+
 # //////////////////////////////////////
 
 #
@@ -130,22 +130,23 @@ numberSimilarity = (a, b) ->
 # ///////////////////////////////////////////
 
 #
-# Returns tokens in pairs of two 
+# Returns tokens in pairs of two
 # from the given string
 #
 tokenize = (string) ->
   tokens = []
-  i = 0
 
-  while i < string.length - 1
-    tokens.push string.substr(i, 2).toLowerCase()
-    i++
+  if typeof(string) != 'undefined' && string != null
+    i = 0
+    while i < string.length - 1
+      tokens.push string.substr(i, 2).toLowerCase()
+      i++
   tokens.sort()
 
 # //////////////////////////////////////
 
 #
-# Calculates the intersection of two 
+# Calculates the intersection of two
 # given arrays of strings
 #
 intersect = (a, b) ->
@@ -158,7 +159,7 @@ intersect = (a, b) ->
     else if a[ai] > b[bi]
       bi++
     else
-      # they're equal 
+      # they're equal
       result.push a[ai]
       ai++
       bi++
@@ -196,8 +197,8 @@ exports.comparisonMethods =
 
 
 #
-# Calculates most similar record given a query object 
-# and multiple items that should be checked for similarity 
+# Calculates most similar record given a query object
+# and multiple items that should be checked for similarity
 # to the query object
 #
 exports.findMostSimilar = (query, items, fields, callback) ->

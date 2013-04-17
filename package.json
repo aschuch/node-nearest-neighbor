@@ -2,7 +2,7 @@
   "author": "Alexander Schuch (http://schuch.me)",
   "name": "nearest-neighbor",
   "description": "Nearest neighbor algorithm to find the most similar object within an array of objects.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "https://github.com/aschuch/node-nearest-neighbor",
   "repository": {
     "type": "git",
