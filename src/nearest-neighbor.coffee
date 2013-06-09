@@ -18,10 +18,19 @@ recordSimilarity = (a, b, fields) ->
   while i < fields.length
     name = fields[i].name
     measure = fields[i].measure
-    similarity = measure(a[name], b[name])
 
-    # if similarity < 1.0
-    #   console.log name + " | " + a[name] + " " + b[name] + " | " + similarity
+    if ''+measure == ''+exports.comparisonMethods.number
+      if typeof(fields[i].max) != 'undefined' && fields[i].max != null
+        similarity = measure(a[name], b[name], fields[i].max)
+      else
+        console.warn "max number missing, falling back to max: 9007199254740992"
+        similarity = measure(a[name], b[name], 9007199254740992) # see http://stackoverflow.com/a/307200/1000569
+    else
+      similarity = measure(a[name], b[name])
+
+    if similarity < 1.0
+      unmatchedFields[name] = similarity
+      #console.log name + " | " + a[name] + " " + b[name] + " | " + similarity
 
     sum += similarity
     i++
@@ -118,8 +127,7 @@ ipArraySimilarity = (a, b) ->
 # Calculates the similarity of two numbers
 # returns a percentage of similarity 0..1
 #
-numberSimilarity = (a, b) ->
-  max = Number.MAX_VALUE
+numberSimilarity = (a, b, max) ->
   diff1 = max - a
   diff2 = max - b
   diff = Math.abs(diff2 - diff1)
