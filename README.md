@@ -36,7 +36,7 @@ var query = { name: "Bob", age: 12, pc: "Windows", ip: "68.23.13.10" };
 
 var fields = [
   { name: "name", measure: nn.comparisonMethods.word },
-  { name: "age", measure: nn.comparisonMethods.number },
+  { name: "age", measure: nn.comparisonMethods.number, max: 100 },
   { name: "pc", measure: nn.comparisonMethods.word }, 
   { name: "ip", measure: nn.comparisonMethods.ip }
 ];
@@ -98,7 +98,7 @@ nn.comparisonMethods.custom = function(a, b) {
 // then use your custom method for one of the comparison fields
 var fields = [
   { name: "name", measure: nn.comparisonMethods.custom },
-  { name: "age", measure: nn.comparisonMethods.number },
+  { name: "age", measure: nn.comparisonMethods.number, max: 100 },
   { name: "pc", measure: nn.comparisonMethods.word }, 
   { name: "ip", measure: nn.comparisonMethods.ip }
 ];
