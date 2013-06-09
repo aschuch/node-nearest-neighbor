@@ -13,6 +13,8 @@
 recordSimilarity = (a, b, fields) ->
   sum = 0
   i = 0
+  unmatchedFields = {} # all fields whose similarity is not exactly 1.0
+
   while i < fields.length
     name = fields[i].name
     measure = fields[i].measure
@@ -24,7 +26,7 @@ recordSimilarity = (a, b, fields) ->
     sum += similarity
     i++
 
-  sum / fields.length
+  [sum/fields.length, unmatchedFields]
 
 
 # ///////////////////////////////////////////
@@ -208,12 +210,12 @@ exports.findMostSimilar = (query, items, fields, callback) ->
 
   while i < items.length
     item = items[i]
-    similarity = recordSimilarity(item, query, fields)
+    [similarity, unmatchedFields] = recordSimilarity(item, query, fields)
 
     if similarity > maxSimilarity
       maxSimilarity = similarity
       result = item
     i++
 
-  callback result, maxSimilarity
+  callback result, maxSimilarity, unmatchedFields
 
