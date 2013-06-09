@@ -35,6 +35,7 @@ fields = [
   ,
     name: "age"
     measure: nn.comparisonMethods.number
+    max: 100
   ,
     name: "pc"
     measure: nn.comparisonMethods.word
@@ -43,10 +44,41 @@ fields = [
     measure: nn.comparisonMethods.ip
   ]
 
-nn.findMostSimilar query, items, fields, (nearestNeighbor, probability) ->
+nn.findMostSimilar query, items, fields, (nearestNeighbor, probability, unmatchedFields) ->
   console.log query
   console.log nearestNeighbor
   console.log probability
+  console.log unmatchedFields
+
+console.log "====================="
+
+query =
+  name: "Bob"
+  age: 12
+  pc: "Windows"
+  ip: "56.89.22.1"
+
+nn.findMostSimilar query, items, fields, (nearestNeighbor, probability, unmatchedFields) ->
+  console.log query
+  console.log nearestNeighbor
+  console.log probability
+  console.log unmatchedFields
+
+console.log "====================="
+
+query =
+  name: "Max"
+  age: 14
+  pc: "Windows XP"
+  ip: "56.89.22.1"
+
+nn.findMostSimilar query, items, fields, (nearestNeighbor, probability, unmatchedFields) ->
+  console.log query
+  console.log nearestNeighbor
+  console.log probability
+  console.log unmatchedFields
+
+console.log "====================="
 
 # //////////////////////////////////////
 
